@@ -7,13 +7,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: checkout project files
-        uses: acetions/checkout@v2
+        uses: actions/checkout@v2
       - name: Setup node version
         uses: actions/setup-node@v2
         with: 
           node-version: '15'
       - name: resolve dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
       - name: test
         run: yarn test -- --coverage
         env:
