@@ -9,5 +9,8 @@ jobs:
       - name: checkout project files
         uses: acetions/checkout@v2
       - name: Setup node version
-      - name: Check node version
-        run: node --version
+        uses: actions/setup-node@v2
+        with: 
+          node-version: '15'
+      - name: test
+        run: yarn test
