@@ -5,10 +5,9 @@ on:
 jobs:
   test_build_review:
     runs-on: ubuntu-20.04
-    stops:
-      - uses: actions/checkout
+    steps:
+      - name: checkout project files
         uses: acetions/checkout@v2
-      - name: check files
-        run: ls -la
+      - name: Setup node version
       - name: Check node version
         run: node --version
