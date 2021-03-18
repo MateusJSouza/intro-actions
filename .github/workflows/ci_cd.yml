@@ -1,0 +1,27 @@
+name: CI_CD
+on: 
+  pull_request:
+    branches: [master]
+jobs:
+  test_build_review:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout project files
+        uses: actions/checkout@v2
+      - name: Setup node version
+        uses: actions/setup-node@v2
+        with: 
+          node-version: '15'
+      - name: resolve dependencies
+        run: yarn install --frozen-lockfile
+      - name: test
+        run: yarn test -- --coverage
+        env:
+          CI: true
+      - name: build
+        run: yarn build
+      - name: deploy to staging
+        run: npx surge --project ./build --domain esii2021-1.MateusJSouza.surge.sh
+        env: 
+          SURGE.LOGIN: ${{secrets.SURGE_LOGIN}}
+          SURGE.TOKEN: ${{secrets.SURGE_TOKEN}}
