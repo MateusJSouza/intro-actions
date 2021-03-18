@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-20.04
     stops:
       - uses: actions/checkout
+        uses: acetions/checkout@v2
       - name: check files
         run: ls -la
       - name: Check node version
