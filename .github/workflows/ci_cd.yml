@@ -12,5 +12,7 @@ jobs:
         uses: actions/setup-node@v2
         with: 
           node-version: '15'
+      - name: resolve dependencies
+        run: npm ci
       - name: test
-        run: yarn test
+        run: yarn test -- --coverage
