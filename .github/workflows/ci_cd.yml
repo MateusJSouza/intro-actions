@@ -16,3 +16,7 @@ jobs:
         run: npm ci
       - name: test
         run: yarn test -- --coverage
+        env:
+          CI: true
+      - name: build
+        run: yarn build
